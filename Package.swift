@@ -5,25 +5,30 @@ import PackageDescription
 
 let package = Package(
     name: "foundation-deepseek",
+    platforms: [.iOS(.v27), .macOS(.v27), .visionOS(.v27), .watchOS(.v27), .macCatalyst(.v27)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "foundation-deepseek",
-            targets: ["foundation_deepseek"]
+            targets: ["FoundationDeepSeek"]
         ),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/MacPaw/OpenAI", branch: "main"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "foundation_deepseek",
+            name: "FoundationDeepSeek",
+            dependencies: [.product(name: "OpenAI", package: "OpenAI")],
             swiftSettings: [
                 .enableUpcomingFeature("ApproachableConcurrency"),
             ],
         ),
         .testTarget(
-            name: "foundation_deepseekTests",
-            dependencies: ["foundation_deepseek"],
+            name: "FoundationDeepSeekTests",
+            dependencies: ["FoundationDeepSeek"],
             swiftSettings: [
                 .enableUpcomingFeature("ApproachableConcurrency"),
             ],
