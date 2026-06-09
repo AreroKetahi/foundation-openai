@@ -9,19 +9,20 @@ import Foundation
 import FoundationModels
 import OpenAI
 
-struct DeepSeekLanguageModelExecutor: LanguageModelExecutor {
-    typealias Model = DeepSeekLanguageModel
+public struct DeepSeekLanguageModelExecutor: LanguageModelExecutor {
+    public typealias Model = DeepSeekLanguageModel
 
-    struct Configuration: Hashable, Sendable {
-        enum DeepSeekModel: String {
+    public struct Configuration: Hashable, Sendable {
+        public enum DeepSeekModel: String, Sendable {
             case flash = "deepseek-v4-flash"
             case pro = "deepseek-v4-pro"
         }
-        var apiKey: String
-        var baseURL: URL
-        var modelID: DeepSeekModel
+        
+        public var apiKey: String
+        public var baseURL: URL
+        public var modelID: DeepSeekModel
 
-        init(
+        public init(
             apiKey: String,
             baseURL: URL = URL(string: "https://api.deepseek.com")!,
             modelID: DeepSeekModel = .flash
@@ -32,12 +33,12 @@ struct DeepSeekLanguageModelExecutor: LanguageModelExecutor {
         }
     }
 
-    enum DeepSeekError: LocalizedError {
+    public enum DeepSeekError: LocalizedError {
         case invalidResponse
         case requestFailed(statusCode: Int, body: String)
         case emptyAPIKey
 
-        var errorDescription: String? {
+        public var errorDescription: String? {
             switch self {
             case .invalidResponse:
                 "DeepSeek returned an invalid response."
@@ -52,7 +53,7 @@ struct DeepSeekLanguageModelExecutor: LanguageModelExecutor {
     private let configuration: Configuration
     private let decoder = JSONDecoder()
 
-    init(configuration: Configuration) throws {
+    public init(configuration: Configuration) throws {
         guard
             !configuration.apiKey.trimmingCharacters(
                 in: .whitespacesAndNewlines
@@ -64,11 +65,11 @@ struct DeepSeekLanguageModelExecutor: LanguageModelExecutor {
         self.configuration = configuration
     }
 
-    func prewarm(model: Model, transcript: Transcript) {
+    public func prewarm(model: Model, transcript: Transcript) {
         // Remote API model: nothing to preload locally.
     }
 
-    func respond(
+    public func respond(
         to request: LanguageModelExecutorGenerationRequest,
         model: DeepSeekLanguageModel,
         streamingInto channel: LanguageModelExecutorGenerationChannel

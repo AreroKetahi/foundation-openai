@@ -6,7 +6,7 @@ import OpenAI
 
 @Suite struct DeepSeekModelTests {
     @Test func execute() async throws {
-        let session = LanguageModelSession(model: DeepSeekLanguageModel.flash) {
+        let session = LanguageModelSession(model: DeepSeekLanguageModel.flash(apiKey: "test-key")) {
             "When the user says Hello, world!, reply with exactly true and no other text."
         }
         
