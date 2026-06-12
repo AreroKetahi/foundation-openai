@@ -19,7 +19,7 @@ output, and request customization.
 Add the package to your Swift package dependencies:
 
 ```swift
-.package(url: "https://github.com/<owner>/foundation-openai", branch: "main")
+.package(url: "https://github.com/AreroKetahi/foundation-openai", branch: "main")
 ```
 
 Then add the product to your target:
