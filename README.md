@@ -72,6 +72,13 @@ The predefined ChatGPT model IDs are:
 .v5_5
 ```
 
+### Supported LLMs
+
+- [x] ChatGPT
+- [x] DeepSeek
+
+*and to be support more*
+
 ### Custom executor configuration
 
 Most usage can keep the default configuration:
