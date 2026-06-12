@@ -46,6 +46,11 @@ public struct OpenAILanguageModelExecutor<LanguageModel: OpenAILanguageModel>: L
             self.transformer = .init(transformer)
             self.modifiers = modifiers
         }
+        
+        /// Default executor configuration.
+        public static var `default`: Self {
+            .init()
+        }
     }
     
     /// Errors that executor may throws.
