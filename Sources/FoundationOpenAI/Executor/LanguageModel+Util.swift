@@ -1,6 +1,6 @@
 //
-//  DeepSeekLanguageModel+Util.swift
-//  foundation-deepseek
+//  LanguageModel+Util.swift
+//  FoundationOpenAI
 //
 //  Created by Arkivili Collindort on 10/06/2026
 //
@@ -14,8 +14,8 @@ import UIKit
 package func FDSCGImageToPNGData(_ image: CGImage) -> Data? {
     UIImage(cgImage: image).pngData()
 }
-#elseif canImport(AppKit)
-import AppKit
+#elseif canImport(ImageIO)
+import ImageIO
 import UniformTypeIdentifiers
 
 package func FDSCGImageToPNGData(_ image: CGImage) -> Data? {
