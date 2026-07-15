@@ -8,6 +8,7 @@
 import FoundationModels
 import Foundation
 
+@available(anyAppleOS 27.0, *)
 public protocol OpenAILanguageModel: LanguageModel {
     associatedtype Model: RawRepresentable & Sendable where Model.RawValue == String
     
@@ -18,6 +19,7 @@ public protocol OpenAILanguageModel: LanguageModel {
 }
 
 /// The OpenAI API format that certain model required to.
+@available(anyAppleOS 27.0, *)
 public enum OpenAILanguageModelAPIFormat: Sendable {
     /// Most industry adoped API format.
     case chatCompletion

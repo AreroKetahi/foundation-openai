@@ -8,6 +8,7 @@
 import FoundationModels
 import Foundation
 
+@available(anyAppleOS 27.0, *)
 public struct ChatGPTLanguageModel: OpenAILanguageModel {
     public typealias Executor = OpenAILanguageModelExecutor<ChatGPTLanguageModel>
     
@@ -18,7 +19,7 @@ public struct ChatGPTLanguageModel: OpenAILanguageModel {
     }
     
     public let capabilities = LanguageModelCapabilities(
-        capabilities: [.reasoning, .toolCalling, .vision, .guidedGeneration]
+        [.reasoning, .toolCalling, .vision, .guidedGeneration]
     )
     public var baseURL = URL(string: "https://api.openai.com/v1")!
     public let apiFormat: OpenAILanguageModelAPIFormat = .response

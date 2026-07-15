@@ -18,6 +18,7 @@ import OpenAI
 /// OpenAI API compatiable model may have some difference. You can pass your
 /// own ``QueryTransformer`` and ``ExecutorRequestModifier`` into
 /// ``Configuration`` to customize executor's behaviors.
+@available(anyAppleOS 27.0, *)
 public struct OpenAILanguageModelExecutor<LanguageModel: OpenAILanguageModel>: LanguageModelExecutor {
     public typealias Model = LanguageModel
     public struct Configuration: Hashable, Sendable {

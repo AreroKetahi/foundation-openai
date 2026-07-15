@@ -8,6 +8,7 @@
 import OpenAI
 import FoundationModels
 
+@available(anyAppleOS 27.0, *)
 public struct AnyQueryTransformer {
     var erased: any QueryTransformer
     
@@ -32,6 +33,7 @@ public struct AnyQueryTransformer {
     }
 }
 
+@available(anyAppleOS 27.0, *)
 extension AnyQueryTransformer: QueryTransformer {
     public func transformInstructions(from instructions: Transcript.Instructions) throws -> ChatQuery.ChatCompletionMessageParam? {
         try erased.transformInstructions(from: instructions)

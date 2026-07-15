@@ -10,6 +10,7 @@ import Foundation
 import FoundationModels
 import OpenAI
 
+@available(anyAppleOS 27.0, *)
 struct ExecutorRequestModifierMiddleware: OpenAIMiddleware {
     let modifiers: [AnyExecutorRequestModifier]
     

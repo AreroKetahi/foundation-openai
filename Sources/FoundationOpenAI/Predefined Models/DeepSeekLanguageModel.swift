@@ -8,6 +8,7 @@
 import FoundationModels
 import Foundation
 
+@available(anyAppleOS 27.0, *)
 public struct DeepSeekLanguageModel: OpenAILanguageModel {
     
     public typealias Executor = OpenAILanguageModelExecutor<DeepSeekLanguageModel>
@@ -35,7 +36,7 @@ public struct DeepSeekLanguageModel: OpenAILanguageModel {
     }
 
 
-    public let capabilities: LanguageModelCapabilities = .init(capabilities: [
+    public let capabilities: LanguageModelCapabilities = .init([
         .guidedGeneration,
         .reasoning,
         .toolCalling,

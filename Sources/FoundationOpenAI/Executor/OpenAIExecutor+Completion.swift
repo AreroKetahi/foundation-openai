@@ -9,6 +9,7 @@ import Foundation
 import FoundationModels
 import OpenAI
 
+@available(anyAppleOS 27.0, *)
 extension OpenAILanguageModelExecutor {
     func _chatCompletion(
         to request: LanguageModelExecutorGenerationRequest,
@@ -22,7 +23,7 @@ extension OpenAILanguageModelExecutor {
         
         var toolCallStates: [Int: StreamingToolCallState] = [:]
         
-        for await response in openAI.chatsStream(query: query) {
+        for try await response in openAI.chatsStream(query: query) {
             for choice in response.choices {
                 if let content = choice.delta.content {
                     await channel.send(

@@ -13,6 +13,7 @@ import OpenAI
 ///
 /// You can **optionally** implement any transforming method that you many want to change.
 /// Other methods will remains default.
+@available(anyAppleOS 27.0, *)
 public protocol QueryTransformer: Sendable, Hashable {
     func transformInstructions(from instructions: Transcript.Instructions) throws -> ChatQuery.ChatCompletionMessageParam?
     func transformPrompt(from prompt: Transcript.Prompt) throws -> ChatQuery.ChatCompletionMessageParam?
@@ -23,36 +24,39 @@ public protocol QueryTransformer: Sendable, Hashable {
 }
 
 /// Default transformer implementation.
+@available(anyAppleOS 27.0, *)
 public struct DefaultQueryTransformer: QueryTransformer {
     public init() { }
 }
 
+@available(anyAppleOS 27.0, *)
 extension QueryTransformer where Self == DefaultQueryTransformer {
     /// Default query transformer.
     static var `default`: Self { .init() }
 }
 
+@available(anyAppleOS 27.0, *)
 extension QueryTransformer {
     public func transformInstructions(from instructions: Transcript.Instructions) throws -> ChatQuery.ChatCompletionMessageParam? {
-    .system(
-        ChatQuery.ChatCompletionMessageParam.SystemMessageParam(
-            content: .contentParts(
-                instructions.segments.compactMap { segment in
-                    switch segment {
-                    case .text(let text):
-                        ChatQuery.ChatCompletionMessageParam.ContentPartTextParam(text: text.content)
-                    case .structure(let structure):
-                        ChatQuery.ChatCompletionMessageParam.ContentPartTextParam(
-                            text: #"{"content":"\#(structure.content.jsonString)","schemaName":"\#(structure.schemaName)"}"#
-                        )
-                    default:
-                        nil
+        .system(
+            ChatQuery.ChatCompletionMessageParam.SystemMessageParam(
+                content: .contentParts(
+                    instructions.segments.compactMap { segment in
+                        switch segment {
+                        case .text(let text):
+                            ChatQuery.ChatCompletionMessageParam.ContentPartTextParam(text: text.content)
+                        case .structure(let structure):
+                            ChatQuery.ChatCompletionMessageParam.ContentPartTextParam(
+                                text: #"{"content":"\#(structure.content.jsonString)","schemaName":"\#(structure.schemaName)"}"#
+                            )
+                        default:
+                            nil
+                        }
                     }
-                }
+                )
             )
         )
-    )
-}
+    }
     
     public func transformPrompt(from prompt: Transcript.Prompt) throws -> ChatQuery.ChatCompletionMessageParam? {
         .user(

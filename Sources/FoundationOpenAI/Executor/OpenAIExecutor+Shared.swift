@@ -9,6 +9,7 @@ import Foundation
 import FoundationModels
 import OpenAI
 
+@available(anyAppleOS 27.0, *)
 extension OpenAILanguageModelExecutor {
     func makeOpenAIClient(model: Model) -> OpenAI {
         OpenAI(

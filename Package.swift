@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "foundation-openai",
-    platforms: [.iOS(.v27), .macOS(.v27), .visionOS(.v27), .watchOS(.v27), .macCatalyst(.v27)],
+    platforms: [.iOS(.v15), .macOS(.v12), .visionOS(.v1), .watchOS(.v10), .macCatalyst(.v15)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(

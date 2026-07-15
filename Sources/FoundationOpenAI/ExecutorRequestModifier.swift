@@ -18,6 +18,7 @@ import Foundation
 ///     }
 /// }
 /// ```
+@available(anyAppleOS 27.0, *)
 public protocol ExecutorRequestModifier: Hashable, Sendable {
     /// Modify `URLRequest` in runtime.
     /// - Parameter request: Original `URLRequest` that needs to modify.
@@ -25,6 +26,7 @@ public protocol ExecutorRequestModifier: Hashable, Sendable {
 }
 
 /// An container type that wrapping all the ``ExecutorRequestModifier``.
+@available(anyAppleOS 27.0, *)
 public struct AnyExecutorRequestModifier: ExecutorRequestModifier {
     private let erased: any ExecutorRequestModifier
     private let hashInto: @Sendable (inout Hasher) -> Void
